@@ -7,7 +7,11 @@
 public class Martingale {
 
     // Properties:
-
+    int initialBet = 10;
+    int currentBet = initialBet;
+    int balance = 100;
+    int target = balance * 2;
+    int stepCount = 0;
 
     // Behaviors:
 
@@ -35,6 +39,26 @@ public class Martingale {
      */
     public void step(){
 
+        // Base case:
+        if (balance <= 0 || balance >= target ) return;
+
+        // Create win/loss variable between 0-1
+        double winState = Math.random();
+
+        // If loss, decrement balance and reset current bet to initial
+        if (winState <= 0.5){
+            balance-=initialBet;
+            currentBet = initialBet;
+        } else {
+            // If win, martingale. Strategy: If current bet exceeds balance, update balance
+            if (currentBet >= balance) balance += currentBet;
+            currentBet*=2;
+        }
+
+        // Increment step count and recurse
+        stepCount++;
+
+        step();
 
     }
 

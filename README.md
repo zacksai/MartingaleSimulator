@@ -1,4 +1,4 @@
-// This is a martingale simulator
+ // This is a martingale simulator
 
 the martingale strategy is used in gambling as follows
 if you win, double your bet
